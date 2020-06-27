@@ -61,4 +61,10 @@ app.post('/users/login', redirectIfAuthenticatedMiddleware, loginUserController)
 app.post('/users/register', redirectIfAuthenticatedMiddleware, storeUserController)
 app.use(notFoundController)
 
-app.listen(3000)
+let port = process.env.PORT
+if(port == null || port == ""){
+    port = 3000
+}
+app.listen(port, function(){
+    console.log("App listening...")
+})
